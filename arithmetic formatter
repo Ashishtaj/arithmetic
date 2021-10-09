@@ -1,0 +1,117 @@
+ def arithmetic_arranger(alist, *args):
+    alen = len(alist)
+    if (alen > 5):
+        return "Error: Too many problems."
+
+    firstline = ""
+    secondline = ""
+    tline = ""
+    lastline = ""
+
+    for x in alist:
+
+        checker = x.count("*")
+        checker2 = x.count("/")
+
+        if checker | checker2 > 0:
+            return "Error: Operator msut be '+' or '-'."
+
+        txt = x.split(" ")
+        plen = max(len(txt[0]), len(txt[2]))
+
+        if plen > 4:
+            return "Error: Numbers cannot be more than four digits."
+
+        if txt[0].isdigit() & txt[2].isdigit():
+
+            if (plen == len(txt[0])):
+
+                fline = "  " + txt[0] + "   "
+                firstline = firstline + fline
+
+                diff = len(txt[0]) - len(txt[2]) + 1
+                dspace = " " * diff
+
+                sline = txt[1] + dspace + txt[2] + "   "
+
+                secondline = secondline + sline
+
+                tl = (plen + 2) * "_" + "   "
+                tline = tline + tl
+
+                if txt[1] == "+":
+                    a1 = int(txt[0])
+                    a2 = int(txt[2])
+                    addlines = a1 + a2
+
+                    ss2 = str(addlines)
+
+
+                    a3 = len(tl) - 3 - len(ss2)
+
+                    ss3 = " " * a3
+                    ss2 = ss3 + ss2 + "   "
+
+                    lastline = lastline + ss2
+
+                else:
+                    s1 = int(txt[0])
+                    s2 = int(txt[2])
+                    sublines = s1 - s2
+
+                    ss2 = str(sublines)
+
+                    s3 = len(tl) - 3 - len(ss2)
+                    ss3 = s3 * " "
+                    ss2 = ss3 + ss2 + "   "
+
+                    lastline = lastline + ss2
+
+
+            else:
+                diff = len(txt[2]) - len(txt[0]) + 2
+                dspace = " " * diff
+
+                fline = dspace + txt[0] + "   "
+                firstline = firstline + fline
+
+                sline = txt[1] + " " + txt[2] + "   "
+                secondline = secondline + sline
+
+                tl = (plen + 2) * "_" + "   "
+                tline = tline + tl
+
+                if txt[1] == "+":
+                    a1 = int(txt[0])
+                    a2 = int(txt[2])
+                    addlines = a1 + a2
+                    ss2 = str(addlines)
+
+                    a3 = len(tl) - 3 - len(ss2)
+
+                    ss3 = " " * a3
+                    ss2 = ss3 + ss2 + "   "
+                    lastline = lastline + ss2
+
+                else:
+                    s1 = int(txt[0])
+                    s2 = int(txt[2])
+
+                    sublines = s1 - s2
+                    ss2 = str(sublines)
+                    s3 = len(tl) - 3 - len(ss2)
+                    ss3 = s3 * " "
+                    ss2 = ss3 + ss2 + "   "
+                    lastline = lastline + ss2
+
+        else:
+            return "Error: Numbers must only contain digits"
+
+    if args:
+        arr = [firstline, secondline, tline, lastline]
+        for x in arr:
+            print(x)
+    else:
+        arr = [firstline, secondline, tline]
+        for x in arr:
+            print(x)
